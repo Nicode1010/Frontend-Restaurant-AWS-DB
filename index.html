@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comidas</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Estilos personalizados -->
+    <style>
+        /* Estilo para los botones */
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px; /* Separación entre botones */
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Comidas</h1>
+        <!-- Botón "Estadísticas" -->
+        <button class="button stats-button" onclick="showStatistics()">Estadísticas</button>
+        <!-- Botón "Crear Orden" -->
+        <button class="button create-order-button">Crear Orden</button>
+        <div id="grid" class="grid"></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
