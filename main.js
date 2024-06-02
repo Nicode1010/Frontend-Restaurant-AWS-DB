@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // URL de la API para obtener todos los pedidos
     const apiURL = 'https://yknf2fu0l7.execute-api.us-east-1.amazonaws.com/dev/get-orders/';
-    // URL de la API para crear una nueva orden
+    // URL de la API para eliminar un pedido
+    const deleteOrderURL = 'https://yknf2fu0l7.execute-api.us-east-1.amazonaws.com/dev/delete-order/';
     const createOrderURL = 'https://yknf2fu0l7.execute-api.us-east-1.amazonaws.com/dev/create-order';
-
     // Variable para almacenar los datos obtenidos
     let ordersData = null;
 
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p>Tipo de Comida: ${order.TipodeComida}</p>
             <p>Nombre: ${order.Nombre}</p>
             <p>Valor: ${order.Valor}</p>
+            <button class="button delete-button" data-id="${order.id_pedido}">Eliminar</button>
         `;
         
         return card;
@@ -51,6 +52,39 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.appendChild(card);
         });
     };
+
+    // Función para eliminar un pedido
+    const deleteOrder = async (orderId) => {
+        try {
+            const response = await fetch(deleteOrderURL + orderId, {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                // Si la orden se elimina correctamente, volver a cargar los datos para actualizar la vista
+                fetchData();
+                alert('Pedido eliminado exitosamente');
+            } else {
+                const responseData = await response.json();
+                console.error('Error al eliminar el pedido:', responseData.message);
+            }
+        } catch (error) {
+            console.error('Error al eliminar el pedido:', error);
+        }
+    };
+
+    // Llamar a la función para obtener los datos y renderizar las tarjetas
+    fetchData();
+
+    // Agregar un evento de clic al botón "Eliminar" en cada tarjeta de pedido
+    grid.addEventListener('click', (event) => {
+        if (event.target.classList.contains('delete-button')) {
+            const orderId = event.target.dataset.id;
+            if (confirm(`¿Estás seguro de eliminar el pedido #${orderId}?`)) {
+                deleteOrder(orderId);
+            }
+        }
+    });
 
     // Función para mostrar estadísticas al hacer clic en el botón "Estadísticas"
     const showStatistics = () => {
@@ -114,9 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al crear la orden:', error);
         }
     };
-
-    // Llamar a la función para obtener los datos y renderizar las tarjetas
-    fetchData();
 
     // Agregar un evento de clic al botón "Estadísticas"
     const statsButton = document.querySelector('.stats-button');

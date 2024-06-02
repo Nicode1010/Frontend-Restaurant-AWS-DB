@@ -8,27 +8,71 @@
 
     <!-- Estilos personalizados -->
     <style>
+        /* Estilo para el fondo de la página */
+        body {
+            background-image: url('images/image1fondo.jpg');
+            background-size: cover; /* Para cubrir todo el área */
+            background-position: center; /* Centra la imagen */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        /* Estilo para el encabezado */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: black; /* Cambiar color de fondo a negro */
+            color: red; /* Cambiar color del texto a negro */
+            padding: 20px; /* Aumentar el padding */
+            border-radius: 8px; /* Aumentar el radio del borde */
+            font-size: 3em; /* Aumenta el tamaño de la fuente */
+        }
+
+        /* Estilo para el logo */
+        .logo {
+            max-width: 100px; /* Ajusta el tamaño del logo */
+            margin-right: 10px; /* Espacio entre el logo y el texto */
+            vertical-align: middle; /* Alinea verticalmente con el texto */
+        }
+
         /* Estilo para los botones */
         .button {
-            padding: 10px 20px;
+            padding: 15px 30px; /* Aumentar el padding */
             background-color: #007bff;
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px; /* Aumentar el radio del borde */
             cursor: pointer;
-            font-size: 16px;
-            margin-right: 10px; /* Separación entre botones */
+            font-size: 20px; /* Aumentar el tamaño del texto */
+            margin: 10px; /* Agregar margen */
             transition: background-color 0.3s;
         }
 
         .button:hover {
             background-color: #0056b3;
         }
+
+        /* Estilo para el botón "Crear Orden" */
+        .create-order-button {
+            background-color: green; /* Cambiar color a verde */
+        }
+
+        /* Estilo para el botón de eliminar */
+        .delete-button {
+            background-color: red;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Comidas</h1>
+        <h1>
+            <img src="images/logo.png" alt="Logo" class="logo">Comidas
+        </h1>
         <!-- Botón "Estadísticas" -->
         <button class="button stats-button" onclick="showStatistics()">Estadísticas</button>
         <!-- Botón "Crear Orden" -->
